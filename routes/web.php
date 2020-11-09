@@ -15,7 +15,7 @@ use \Illuminate\Http\Request;
 |
 */
 
-Auth::routes();
+Auth::routes(['register' => false, 'login'=>true, 'reset' => false]);
 //********public*********************
 Route::get('/', function () {
     return view('welcome');
@@ -41,3 +41,11 @@ Route::get('/client/edit/{id}', 'ClientController@edit')->name('client.edit');
 Route::post('/client/update/{id}', 'ClientController@update')->name('client.update');
 Route::get('/client/create', 'ClientController@create')->name('client.create');
 Route::post('/client/store', 'ClientController@store')->name('client.store');
+
+
+//*********************************Invoices*****************************************
+Route::get('/invoices', 'InvoiceController@index')->name('invoices');
+Route::get('/invoice/show/{id}', 'InvoiceController@show')->name('invoice.show');
+Route::get('/invoice/print/{id}', 'InvoiceController@InvoicePrint')->name('invoice.print');
+Route::get('/invoice/create', 'InvoiceController@create')->name('invoice.create');
+Route::post('/invoice/store', 'InvoiceController@store')->name('invoice.store');

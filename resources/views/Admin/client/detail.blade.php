@@ -45,46 +45,32 @@
                                     <thead>
                                     <tr>
                                         <th>Facture N°</th>
-                                        <th>Date</th>
-                                        <th>Facture à</th>
+                                        <th>Nom de societé</th>
+                                        <th>facturisé à</th>
+                                        <th>facturisé par</th>
                                         <th>Total</th>
+                                        <th>Date</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>152F56CB</td>
-                                        <td>18-09-2020</td>
-                                        <td>Mr DRH Json drelo</td>
-                                        <td>$646.50</td>
-                                        <td>
-                                            <a href="{{asset(route("client.show",["id"=>$client->id]))}}" class="danger">
-                                                <i class="fas fa-eye" style="color: #1d2124"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>152F56CB</td>
-                                        <td>18-09-2020</td>
-                                        <td>Mr DRH Json drelo</td>
-                                        <td>$646.50</td>
-                                        <td>
-                                            <a href="{{asset(route("client.show",["id"=>$client->id]))}}" class="danger">
-                                                <i class="fas fa-eye" style="color: #1d2124"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>152F56CB</td>
-                                        <td>18-09-2020</td>
-                                        <td>Mr DRH Json drelo</td>
-                                        <td>$646.50</td>
-                                        <td>
-                                            <a href="{{asset(route("client.show",["id"=>$client->id]))}}" class="danger">
-                                                <i class="fas fa-eye" style="color: #1d2124"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach($client->invoice as $invoice)
+
+                                        <tr>
+                                            <td>{{$invoice->invoice_id}}</td>
+                                            <td>{{$invoice->client->company_name}}</td>
+                                            <td>{{$invoice->to}}</td>
+                                            <td>{{$invoice->user->name}}</td>
+                                            <td>{{$invoice->total}}</td>
+                                            <td>{{ \Carbon\Carbon::parse($invoice->address,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}</td>
+                                            <td>
+                                                <a href="{{asset(route("invoice.show",["id"=>$invoice->id]))}}" class="danger">
+                                                    <i class="fas fa-eye" style="color: #1d2124"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

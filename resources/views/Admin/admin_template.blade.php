@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{asset("plugins/datatables-responsive/css/responsive.bootstrap4.min.css")}}">
 
     <link href="{{asset("css/toastr.min.css")}}" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -168,190 +169,38 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-header">Clients</li>
                     <li class="nav-item">
-                        <a href="pages/calendar.html" class="nav-link">
-                            <i class="nav-icon far fa-calendar-alt"></i>
+                        <a href="{{route('clients')}}" class="nav-link">
+                            <i class="nav-icon fas fa-user-friends"></i>
                             <p>
-                                Calendar
-                                <span class="badge badge-info right">2</span>
+                                Consulter
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-plus-square"></i>
+                    <li class="nav-item">
+                        <a href="{{route('client.create')}}" class="nav-link">
+                            <i class="nav-icon fas fa-plus"></i>
                             <p>
-                                Extras
-                                <i class="fas fa-angle-left right"></i>
+                                Ajouter Client
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/examples/login.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Login</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/register.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Register</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/forgot-password.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Forgot Password</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/recover-password.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Recover Password</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/lockscreen.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Lockscreen</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/legacy-user-menu.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Legacy User Menu</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/language-menu.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Language Menu</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/404.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Error 404</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/500.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Error 500</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/pace.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pace</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/blank.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Blank Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="starter.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Starter Page</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="nav-header">Employers</li>
+                    <li class="nav-header">Factures</li>
                     <li class="nav-item">
-                        <a href="pages/calendar.html" class="nav-link">
-                            <i class="nav-icon far fa-calendar-alt"></i>
+                        <a href="{{route('invoices')}}" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice"></i>
                             <p>
-                                Calendar
-                                <span class="badge badge-info right">2</span>
+                                Consulter
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-plus-square"></i>
+                    <li class="nav-item">
+                        <a href="{{route('invoices')}}" class="nav-link">
+                            <i class="nav-icon fas fa-plus"></i>
                             <p>
-                                Extras
-                                <i class="fas fa-angle-left right"></i>
+                                Ajouter Facture
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/examples/login.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Login</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/register.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Register</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/forgot-password.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Forgot Password</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/recover-password.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Recover Password</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/lockscreen.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Lockscreen</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/legacy-user-menu.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Legacy User Menu</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/language-menu.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Language Menu</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/404.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Error 404</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/500.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Error 500</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/pace.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pace</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/blank.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Blank Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="starter.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Starter Page</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
                     <li class="nav-header">Médicaments</li>
@@ -359,7 +208,16 @@
                         <a href="{{route('medications')}}" class="nav-link">
                             <i class="nav-icon fas fa-pills"></i>
                             <p>
-                                Liste
+                                Consulter
+                                {{--<span class="badge badge-info right">{{count($medications)}}</span>--}}
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('create')}}" class="nav-link">
+                            <i class="nav-icon fas fa-plus"></i>
+                            <p>
+                                Ajouter médicament
                                 {{--<span class="badge badge-info right">{{count($medications)}}</span>--}}
                             </p>
                         </a>
@@ -475,6 +333,9 @@
             "responsive": true,
         });
     });
+
+
+
 </script>
 
 </body>

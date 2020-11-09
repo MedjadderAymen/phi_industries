@@ -77,6 +77,7 @@ class MedicationController extends Controller
                 'description' => $request->description,
                 'name' => $request->name,
                 'quantity' => $request->quantity,
+                'price' => $request->price,
                 'user_id' => Auth::user()->id,
                 'modified_by' => Auth::user()->id,
             ]);
@@ -128,6 +129,7 @@ class MedicationController extends Controller
         $data = Validator::make($request->all(), [
             "description" => "required|string",
             "name" => "required|string",
+            "price" => "required",
         ]);
 
         if ($data->fails()) {
@@ -141,6 +143,7 @@ class MedicationController extends Controller
 
         $medication->name=$request->name;
         $medication->description=$request->name;
+        $medication->price=$request->price;
         $medication->quantity+=$request->quantity;
         $medication->modified_by=Auth::user()->id;
 

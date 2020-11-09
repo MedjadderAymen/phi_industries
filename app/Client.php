@@ -10,4 +10,10 @@ class Client extends Model
         'company_name','phone_number',
         'email','address'
     ];
+
+    public function Invoice(){
+
+        return $this->hasMany('App\Invoice');
+
+    }
 }

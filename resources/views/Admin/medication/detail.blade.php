@@ -46,11 +46,15 @@
                                                 <div class="card-body">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Nom</label>
-                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="nom" required name="name" value="{{$medication->name}} ">
+                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="nom" required name="name" value="{{$medication->name}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Prix</label>
+                                                        <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Prix" name="price" value="{{$medication->price}}" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Déscription</label>
-                                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Déscription" name="description" value="{{$medication->description}} " required>
+                                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Déscription" name="description" value="{{$medication->description}}" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Quantité</label>

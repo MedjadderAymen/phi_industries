@@ -34,6 +34,10 @@
                                         <input type="text" required name="description" class="form-control" id="exampleInputPassword1" placeholder="Déscription">
                                     </div>
                                     <div class="form-group">
+                                        <label for="exampleInputPassword1">Prix</label>
+                                        <input type="number" required name="price" class="form-control" id="exampleInputPassword1" placeholder="Prix">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="exampleInputPassword1">Quantité</label>
                                         <input type="number" required name="quantity" class="form-control" id="exampleInputPassword1" placeholder="Quantité">
                                     </div>

@@ -11,6 +11,7 @@ $factory->define(Medication::class, function (Faker $faker) {
 
         'name' => $faker->company,
         'quantity' => $faker->randomDigit*10,
+        'price' => $faker->randomNumber(2),
         'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'image' => $faker->imageUrl($width = 640, $height = 480),
         'user_id' => \App\User::all()->first()->id,

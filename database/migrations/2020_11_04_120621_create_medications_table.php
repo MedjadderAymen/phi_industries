@@ -17,6 +17,7 @@ class CreateMedicationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('quantity');
+            $table->float('price');
             $table->string('description');
             $table->string('image');
             $table->unsignedBigInteger('user_id');

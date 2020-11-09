@@ -9,6 +9,17 @@ use Validator;
 
 class ClientController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +33,7 @@ class ClientController extends Controller
 
     public function create()
     {
-        echo'nkbi';
+        return view('Admin.client.create');
     }
 
     /**
@@ -33,12 +44,34 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        echo 'ok';
+        $data = Validator::make($request->all(), [
+            'company_name' => "required|string",
+            'phone_number' => "required",
+            'email' => "required|string|email|unique:clients",
+            'address' => "required|string",
+        ]);
+
+        if ($data->fails()) {
+
+            Session::flash('error','Vérifier les données SVP!');
+            return redirect()->back();
+
+        }
+
+            Client::create([
+                'company_name' => $request->company_name,
+                'phone_number' => $request->phone_number,
+                'email' => $request->email,
+                'address' => $request->address,
+            ]);
+
+            return redirect('clients');
+
     }
 
     public function show($id)
     {
-        return view('Admin.client.detail')->with("client",Client::find($id));
+        return view('Admin.client.detail')->with("client",Client::find($id)->load('invoice'));
     }
 
     /**

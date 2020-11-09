@@ -22,24 +22,24 @@
                         <div >
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" method="post" action="{{route('store')}}" enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{route('client.store')}}" enctype="multipart/form-data">
                                 {{csrf_field()}}
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nom</label>
-                                        <input type="text" required name="name" class="form-control" id="exampleInputEmail1" placeholder="nom médicament">
+                                        <label for="exampleInputEmail1">Nom entreprise</label>
+                                        <input type="text" required name="company_name" class="form-control" id="exampleInputEmail1" placeholder="Nom entreprise">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Déscription</label>
-                                        <input type="text" required name="description" class="form-control" id="exampleInputPassword1" placeholder="Déscription">
+                                        <label for="exampleInputPassword1">Numéro téléphone</label>
+                                        <input type="number" required name="phone_number" class="form-control" id="exampleInputPassword1" placeholder="Numéro téléphone">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Quantité</label>
-                                        <input type="number" required name="quantity" class="form-control" id="exampleInputPassword1" placeholder="Quantité">
+                                        <label for="exampleInputPassword1">Email</label>
+                                        <input type="email" required name="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleFormControlFile1">Image</label>
-                                        <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                                        <label for="exampleFormControlFile1">Adresse</label>
+                                        <input type="text" name="address" class="form-control" id="exampleFormControlFile1" placeholder="Adresse" required>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

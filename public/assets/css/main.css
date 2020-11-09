@@ -1,0 +1,109 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body nav ul li .active {
+  color: #3BA7E6 !important;
+}
+
+body .py-75 {
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
+body .pt-75 {
+  padding-top: 75px;
+}
+
+body .pb-75 {
+  padding-bottom: 75px;
+}
+
+body .bg-blue {
+  background-color: #3BA7E6;
+}
+
+body .text-blue {
+  color: #3BA7E6;
+}
+
+body .numbers {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(59, 167, 230, 0.8)), to(rgba(59, 167, 230, 0.8))), url("../images/lab-bg.jpg");
+  background: linear-gradient(to bottom, rgba(59, 167, 230, 0.8), rgba(59, 167, 230, 0.8)), url("../images/lab-bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+body .cont {
+  position: relative;
+}
+
+body .cont:hover img {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 0.5;
+}
+
+body .cont:hover .content {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 1;
+}
+
+body .content {
+  background: rgba(59, 167, 230, 0.9);
+  padding: 20px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+body .btn-blue {
+  background-color: #3BA7E6;
+  color: white;
+}
+
+body .nav-item .active {
+  border-bottom: 2px solid #3BA7E6;
+}
+
+body .hr {
+  border: 2px solid #3BA7E6;
+}
+
+body .elevation-4 {
+  -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+body .rounded-25 {
+  border-radius: 25px;
+}
+
+body .btt {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  opacity: .5;
+}
+/*# sourceMappingURL=main.css.map */

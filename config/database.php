@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 
 
-$DATABASE_URL=parse_url('postgres://izmcsswnxpvuen:76f20b6885d7130eb1ab98b3ea46ccf1702392bce6d28fc9a3bfd297047902ac@ec2-34-192-122-0.compute-1.amazonaws.com:5432/dat0g3a2vqmsi3');
+//$DATABASE_URL=parse_url('postgres://izmcsswnxpvuen:76f20b6885d7130eb1ab98b3ea46ccf1702392bce6d28fc9a3bfd297047902ac@ec2-34-192-122-0.compute-1.amazonaws.com:5432/dat0g3a2vqmsi3');
 
 
 return [
@@ -19,7 +19,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    //'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,6 +71,21 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+        /*'pgsql' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
             'host' => $DATABASE_URL["host"],
             'port' => $DATABASE_URL["port"],
             'database' => ltrim($DATABASE_URL["path"], "/"),
@@ -80,7 +96,7 @@ return [
             //'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
-        ],
+        ],*/
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
