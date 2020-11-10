@@ -24,6 +24,7 @@ Route::get('/', function () {
 //************admin**********************
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/set', 'HomeController@set');
 
 //*********medications****************************
 Route::get('/medications', 'MedicationController@index')->name('medications');
@@ -32,6 +33,7 @@ Route::get('/medication/edit/{id}', 'MedicationController@edit')->name('edit');
 Route::post('/medication/update/{id}', 'MedicationController@update')->name('update');
 Route::get('/medication/create', 'MedicationController@create')->name('create');
 Route::post('/medication/store', 'MedicationController@store')->name('store');
+Route::get('/medication/get', 'MedicationController@get')->name('medication.get');
 
 //**************clients*****************************************
 Route::get('/clients', 'ClientController@index')->name('clients');

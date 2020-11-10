@@ -53,7 +53,7 @@
 
                                                             @foreach($clients as $client)
 
-                                                                <option value="{{$client->id}}">{{$client->company_name}}</option>
+                                                                <option value="{{$client->id}}">{{$client->name}}</option>
 
                                                                 @endforeach
                                                         </select>
@@ -62,35 +62,22 @@
                                                 </div>
                                                 <!-- /.col -->
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6"> {{--tet3ewed mena --}}
+                                            <div class="row" id="my_row">
+                                                <div class="col-md-12" id="my-button">
                                                     <div class="form-group">
-                                                        <label>Médicament :</label>
-                                                        <select class="form-control select2bs4" style="width: 100%;">
-
-                                                            @foreach($medications as $medication)
-
-                                                                <option value="{{$medication->id}}">{{$medication->name}}</option>
-
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Quantité :</label>
-                                                        <input type="number" class="form-control" id="exampleInputEmail1" required placeholder="Entrer quantité">
-                                                    </div>
-                                                </div>  {{--7eta hna--}}
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <a type="button" class="btn btn-block btn-outline-primary btn-sm" href="{{route('invoice.create')}}">
-                                                            Ajouter {{--ki neteka 3la hedi yt3ewdou li lfoug --}}
+                                                        <a type="button" class="btn btn-block btn-outline-primary btn-sm" onclick="ajouter()">
+                                                            Ajouter
                                                         </a>
                                                     </div>
                                                 </div>
-
+                                            </div>
+                                            <div class="row" id="my_row">
+                                                <div class="col-md-6" id="my-button">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Remise :</label>
+                                                        <input type="number" class="form-control" id="exampleInputEmail1" required placeholder="Remise à">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- /.row -->
                                         </div>
@@ -115,5 +102,60 @@
         <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+
+
+        ////////////////////////js//////////////////////////////////////
+
+        var medications;
+        jQuery .get( "/medication/get", function( data ) {
+            medications=data;
+        }).done(function(){
+                $.each(medications, function (index,medication) {
+                    $(".options").append("<option value=\""+medication.id+"\">"+medication.name+"</option>")
+                })
+            }
+
+        );
+
+
+        $("#my_row").prepend("    <div class=\"col-md-6\"> \n" +
+            "        <div class=\"form-group options-div\">\n" +
+            "            <label>Médicament :</label>\n" +
+            "            <select class=\"form-control select2bs4 options\" style=\"width: 100%;\">\n" +
+            "                \n" +
+            "            </select>\n" +
+            "        </div>\n" +
+            "    </div>\n" +
+            "    <div class=\"col-md-6\">\n" +
+            "        <div class=\"form-group\">\n" +
+            "            <label for=\"exampleInputEmail1\">Quantité :</label>\n" +
+            "            <input type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" required placeholder=\"Entrer quantité\">\n" +
+            "        </div>\n" +
+            "    </div>");
+
+
+        function ajouter() {
+            $("#my-button").before("<div class=\"col-md-6\"> \n" +
+                "        <div class=\"form-group options-div\">\n" +
+                "            <label>Médicament :</label>\n" +
+                "            <select class=\"form-control select2bs4 options\" style=\"width: 100%;\">\n" +
+                "                \n" +
+                "            </select>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "    <div class=\"col-md-6\">\n" +
+                "        <div class=\"form-group\">\n" +
+                "            <label for=\"exampleInputEmail1\">Quantité :</label>\n" +
+                "            <input type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" required placeholder=\"Entrer quantité\">\n" +
+                "        </div>\n" +
+                "    </div>")
+            $.each(medications, function (index,medication) {
+                $(".options-div").last().children(".options").append("<option value=\""+medication.id+"\">"+medication.name+"</option>")
+            })
+        }
+    </script>
 
 @endsection()

@@ -69,7 +69,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item mr-4 active">
-                <a class="nav-link text-dark" href="#">Accueil</a>
+                <a class="nav-link text-dark" href="">Accueil</a>
               </li>
               <li class="nav-item mr-4">
                 <a class="nav-link text-dark" href="#wwa">Qui Sommes Nous</a>
@@ -88,7 +88,7 @@
     <!-- Navbar End -->
 
     <!-- Carousel Start -->
-    <section class="carousel d-none d-lg-block">
+    <section class="wpb_row vc_row-fluid slider-home">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">

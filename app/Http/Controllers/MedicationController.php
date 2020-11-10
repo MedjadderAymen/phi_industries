@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Medication;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -32,6 +33,12 @@ class MedicationController extends Controller
         $medications=Medication::all();
 
         return view('Admin.medication.index')->with("medications",$medications);
+    }
+
+    public function get(){
+
+        return Medication::all();
+
     }
 
     /**
