@@ -24,7 +24,7 @@ Route::get('/', function () {
 //************admin**********************
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/set', 'HomeController@set');
+Route::get('/set', 'HerokuController@set');
 
 //*********medications****************************
 Route::get('/medications', 'MedicationController@index')->name('medications');
