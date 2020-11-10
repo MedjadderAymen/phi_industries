@@ -12,7 +12,7 @@ class HerokuController extends Controller
     {
         User::create([
             'name' => "medjadder aimen",
-            'email' => "medajdder@gmail.com",
+            'email' => "medjadder@gmail.com",
             'email_verified_at' => now(),
             'role' => "admin",
             'last_time_in' => now(),

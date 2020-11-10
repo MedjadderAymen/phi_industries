@@ -26,6 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin/dashboard')->with('medications',Medication::all());
+        return view('Admin/dashboard')->with('medications',Medication::all());
     }
 }
