@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Invoice;
 use App\Medication;
 use App\User;
 use Illuminate\Http\Request;
@@ -26,6 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('Admin/dashboard')->with('medications',Medication::all());
+        return view('Admin/dashboard')
+            ->with('medications',Medication::all())
+            ->with('clients',Client::all())
+            ->with('invoices',Invoice::all());
     }
 }

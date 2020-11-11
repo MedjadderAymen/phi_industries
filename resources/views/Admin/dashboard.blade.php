@@ -23,14 +23,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>53</h3>
+                            <h3>{{count($clients)}}</h3>
 
                             <p>Clients</p>
                         </div>
                         <div class="icon">
                             <i class="nav-icon fas fa-user-friends"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Plus <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{route('clients')}}" class="small-box-footer">Plus <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -38,14 +38,14 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>150<sup style="font-size: 20px">%</sup></h3>
+                            <h3>{{count($invoices)}}<sup style="font-size: 20px">%</sup></h3>
 
                             <p>Facture</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Plus <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{route('invoices')}}" class="small-box-footer">Plus <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -53,14 +53,14 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>12</h3>
+                            <h3>{{count($medications)}}</h3>
 
                             <p>Médicaments</p>
                         </div>
                         <div class="icon">
                             <i class="nav-icon fas fa-pills"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Plus <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{route('medications')}}" class="small-box-footer">Plus <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

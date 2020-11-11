@@ -39,7 +39,26 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('Admin.invoice.create')->with("clients",Client::all())->with("medications",Medication::all());
+        $clients=Client::all();
+        $medications=Medication::all();
+
+        if (count($clients)==0 ){
+
+            Session::flash('info','Ajouter des clients');
+
+            return redirect(route('client.create'));
+
+        }
+
+        elseif (count($medications)==0){
+
+            Session::flash('info','Ajouter des medicaments');
+
+            return redirect(route('create'));
+
+        }
+
+        return view('Admin.invoice.create')->with("clients",$clients)->with("medications",$medications);
     }
 
     /**
@@ -85,6 +104,8 @@ class InvoiceController extends Controller
         $invoice->price_after_discount = $total - ($invoice->price_after_tva * ($request->discount / 100));
 
         $invoice->save();
+
+        Session::flash('success','Fcture ete bien ajouté');
 
         return redirect(route('invoice.show',["id"=>$invoice->id]));
 

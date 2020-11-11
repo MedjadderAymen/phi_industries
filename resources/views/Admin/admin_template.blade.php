@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PhiIndustrie</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset("dist/img/PhiIndustrieLogo.png")}}" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -314,6 +315,11 @@
     @if(Session::has('error'))
 
     toastr.error("{{Session::get('error')}}")
+    @endif
+
+    @if(Session::has('info'))
+
+    toastr.info("{{Session::get('info')}}")
     @endif
 
 </script>

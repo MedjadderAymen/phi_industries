@@ -45,6 +45,7 @@
     ></script>
 
     <title>Philindustrie</title>
+      <link rel="shortcut icon" type="image/x-icon" href="{{asset("dist/img/PhiIndustrieLogo.png")}}" />
   </head>
   <body>
     <!-- Navbar Start -->
