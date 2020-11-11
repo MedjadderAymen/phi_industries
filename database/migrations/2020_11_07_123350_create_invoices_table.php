@@ -22,6 +22,9 @@ class CreateInvoicesTable extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table->float('total');
+            $table->float('discount');
+            $table->float('price_after_discount');
+            $table->float('price_after_tva');
             $table->timestamps();
             $table->foreign("client_id")->references("id")->on("clients");
             $table->foreign("user_id")->references("id")->on("users");

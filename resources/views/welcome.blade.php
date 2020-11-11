@@ -51,7 +51,7 @@
     <section id="nav">
       <div class="container">
         <nav class="navbar navbar-expand-lg font-weight-bold px-0 ">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{{route('/')}}">
             <img src="assets/images/PHI-LOGO.png" alt="logo" height="16" />
           </a>
           <button
@@ -72,7 +72,7 @@
                 <a class="nav-link text-dark" href="">Accueil</a>
               </li>
               <li class="nav-item mr-4">
-                <a class="nav-link text-dark" href="#wwa">Qui Sommes Nous</a>
+                <a class="nav-link text-dark" href="#about">Qui Sommes Nous</a>
               </li>
               <li class="nav-item mr-4">
                 <a class="nav-link text-dark" href="#produits">Nos Produits</a>
@@ -80,6 +80,11 @@
               <li class="nav-item">
                 <a class="nav-link text-dark" href="#contact">Contactez Nous</a>
               </li>
+                @Auth
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{{route('home')}}"><i class="fas fa-sign-in-alt"></i></a>
+                </li>
+                    @endauth
             </ul>
           </div>
         </nav>
@@ -114,7 +119,7 @@
     <!-- Carousel End -->
 
     <!-- Who We Are Section Start -->
-    <section id="wwa" class="wwa py-75">
+    <section id="about" class="wwa py-75">
       <div class="container">
         <div class="h1 font-weight-bold text-capitalize text-center">
           qui sommes <span style="color: #3ba7e6">nous</span>
@@ -245,7 +250,8 @@
           Contactez <span class="text-blue">Nous</span>
         </div>
         <hr width="90px" class="mb-5 hr" />
-        <form>
+        <form role="form" method="post" action="{{route('sendData')}}" >
+            @csrf
           <div class="form-row font-weight-bold">
             <div class="form-group col-md-6">
               <label for="f_name">Nom <span class="text-danger">*</span></label>
@@ -277,9 +283,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-end mt-5">
-            <a href="#" class="btn btn-blue px-4 font-weight-bold"
-              >Envoyer<i class="fas fa-arrow-right ml-2"></i
-            ></a>
+              <button type="submit" class="btn btn-primary">Envoyer</button>
           </div>
         </form>
       </div>
@@ -356,10 +360,6 @@
       </footer>
     </section>
     <!-- Footer End -->
-
-    <a href="#nav" class="btt">
-        <i class="fas fa-chevron-circle-up text-black-50 fa-3x"></i>
-    </a>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

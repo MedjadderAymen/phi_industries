@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     protected $fillable=[
-        'client_id','to','phone_number','email','total','invoice_id'
+        'client_id','to','phone_number','email','total','invoice_id',
+        'user_id','discount','price_after_discount',
+        'price_after_tva'
     ];
 
     public function Client(){
@@ -22,7 +24,7 @@ class Invoice extends Model
 
     }
 
-    public function Medication(){
-        return $this->belongsToMany('App\Medication');
+    public function Medications(){
+        return $this->belongsToMany('App\Medication')->withPivot('quantity','total_price');
     }
 }

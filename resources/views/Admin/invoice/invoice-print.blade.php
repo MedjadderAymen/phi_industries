@@ -38,7 +38,7 @@
             <div class="row">
               <div class="col-12">
                 <h4>
-                  <small class="float-right">Date: {{ \Carbon\Carbon::parse($invoice->address,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}</small>
+                  <small class="float-right">Date: {{ \Carbon\Carbon::parse($invoice->created_at,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}</small>
                   <b>Facture #{{$invoice->invoice_id}}</b>
                 </h4>
               </div>
@@ -55,10 +55,10 @@
                 De :
                 <address>
                   <strong>PhiIndustrie, Inc.</strong><br>
-                  795 Djdour Ave, Suite 600<br>
                   ElKhroub, Cons 25026<br>
                   Phone: (213) 698 281 556<br>
-                  Email: admin@phiindustrie.com
+                  Email: admin@phiindustrie.com<br>
+                  <strong>Résponsable :</strong> {{$invoice->user->name}}
                 </address>
               </div>
               <!-- /.col -->
@@ -101,12 +101,14 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>50</td>
-                    <td>Grown</td>
-                    <td>520 Da</td>
-                    <td>2600Da</td>
-                  </tr>
+                  @foreach($invoice->medications as $medication)
+                    <tr>
+                      <td>{{$medication->pivot->quantity}}</td>
+                      <td>{{$medication->name}}</td>
+                      <td>{{$medication->price}}.00 Da</td>
+                      <td>{{$medication->pivot->total_price}}.00 Da</td>
+                    </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>
@@ -124,20 +126,20 @@
                 <div class="table-responsive">
                   <table class="table">
                     <tr>
-                      <th style="width:50%">SousTotal:</th>
-                      <td>58600.00 Da</td>
+                      <th style="width:50%">Prix hors TVA:</th>
+                      <td>{{$invoice->total}}.00 Da</td>
                     </tr>
                     <tr>
-                      <th>Tva (14%)</th>
-                      <td>65000.00 Da</td>
+                      <th>Tva (10%)</th>
+                      <td>{{$invoice->price_after_tva}}.00 Da</td>
                     </tr>
                     <tr>
                       <th>Remise :</th>
-                      <td>2%</td>
+                      <td>{{$invoice->discount}}%</td>
                     </tr>
                     <tr>
                       <th>Total:</th>
-                      <td>62500.00 Da</td>
+                      <td>{{$invoice->price_after_discount}}.00 Da</td>
                     </tr>
                   </table>
                 </div>

@@ -6,6 +6,8 @@ use App\Invoice;
 use App\Medication;
 use Illuminate\Http\Request;
 use App\Client;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class InvoiceController extends Controller
 {
@@ -48,7 +50,44 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $invoice=Invoice::create([
+
+            'client_id'=>$request->client_id,
+            'user_id'=>Auth::id(),
+            'invoice_id'=>uniqid(),
+            'to'=>$request->to,
+            'phone_number'=>$request->phone_number,
+            'email'=>$request->email,
+            'discount'=>$request->discount,
+            'total'=>0.0,
+            'price_after_discount'=>0.0,
+            'price_after_tva'=>0.0,
+
+        ]);
+
+        $total=0.0;
+
+        for ($i=0; $i< count($request->medic); $i++){
+
+            $medic=Medication::find($request->medic[$i]);
+
+            $invoice->Medications()->attach($request->medic[$i],['quantity' => $request->quantity[$i],'total_price'=>$request->quantity[$i]*$medic->price]);
+
+            $total+=$request->quantity[$i]*$medic->price;
+
+        }
+
+        $invoice->total=$total;
+
+        $invoice->price_after_tva=$total + ($total * (10 / 100));
+
+        $invoice->price_after_discount = $total - ($invoice->price_after_tva * ($request->discount / 100));
+
+        $invoice->save();
+
+        return redirect(route('invoice.show',["id"=>$invoice->id]));
+
     }
 
     /**
@@ -59,7 +98,9 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice, $id)
     {
-        return view('Admin.invoice.detail')->with("invoice",Invoice::find($id));
+        $invoice=Invoice::find($id)->with('client','user','medications')->first();
+
+        return view('Admin.invoice.detail')->with("invoice",$invoice);
     }
 
     /**
@@ -98,7 +139,9 @@ class InvoiceController extends Controller
 
     public function InvoicePrint($id){
 
-        return view('Admin.invoice.invoice-print')->with("invoice",Invoice::find($id));
+        $invoice=Invoice::find($id)->with('client','user','medications')->first();
+
+        return view('Admin.invoice.invoice-print')->with("invoice",$invoice);
 
     }
 }

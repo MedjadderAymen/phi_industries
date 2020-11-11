@@ -19,12 +19,14 @@ Auth::routes(['register' => false, 'login'=>true, 'reset' => false]);
 //********public*********************
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
 //************admin**********************
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/set', 'HerokuController@set');
+Route::post('/send', 'HerokuController@send')->name('sendData');
 
 //*********medications****************************
 Route::get('/medications', 'MedicationController@index')->name('medications');

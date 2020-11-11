@@ -16,7 +16,7 @@ class Medication extends Model
 
     }
 
-    public function Invoice(){
+    public function Invoices(){
 
         return $this->belongsToMany('App\Invoice');
         

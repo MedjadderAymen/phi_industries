@@ -22,7 +22,7 @@
                         <div >
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" method="post" action="{{route('store')}}" enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{route('invoice.store')}}" enctype="multipart/form-data">
                                 {{csrf_field()}}
                                 <!-- SELECT2 EXAMPLE -->
                                         <!-- /.card-header -->
@@ -31,12 +31,12 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Au nom de :</label>
-                                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Entrer nom" required>
+                                                        <input type="text" name="to" class="form-control" id="exampleInputEmail1" placeholder="Entrer nom" required>
                                                     </div>
                                                     <!-- /.form-group -->
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Numéro téléphone :</label>
-                                                        <input type="email" class="form-control" id="exampleInputEmail1" required placeholder="Entrer numéro téléphone">
+                                                        <input type="phone" name="phone_number" class="form-control" id="exampleInputEmail1" required placeholder="Entrer numéro téléphone">
                                                     </div>
                                                     <!-- /.form-group -->
                                                 </div>
@@ -44,16 +44,16 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Adresse email :</label>
-                                                        <input type="email" class="form-control" id="exampleInputEmail1" required placeholder="Entrer email">
+                                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" required placeholder="Entrer email">
                                                     </div>
                                                     <!-- /.form-group -->
                                                     <div class="form-group">
                                                         <label>Entreprise :</label>
-                                                        <select class="form-control select2bs4" style="width: 100%;">
+                                                        <select class="form-control select2bs4" name="client_id" style="width: 100%;">
 
                                                             @foreach($clients as $client)
 
-                                                                <option value="{{$client->id}}">{{$client->name}}</option>
+                                                                <option value="{{$client->id}}">{{$client->company_name}}</option>
 
                                                                 @endforeach
                                                         </select>
@@ -75,7 +75,7 @@
                                                 <div class="col-md-6" id="my-button">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Remise :</label>
-                                                        <input type="number" class="form-control" id="exampleInputEmail1" required placeholder="Remise à">
+                                                        <input type="number" name="discount" class="form-control" id="exampleInputEmail1" required placeholder="Remise à">
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,7 +124,7 @@
         $("#my_row").prepend("    <div class=\"col-md-6\"> \n" +
             "        <div class=\"form-group options-div\">\n" +
             "            <label>Médicament :</label>\n" +
-            "            <select class=\"form-control select2bs4 options\" style=\"width: 100%;\">\n" +
+            "            <select  name=\"medic[]\" class=\"form-control select2bs4 options\" style=\"width: 100%;\">\n" +
             "                \n" +
             "            </select>\n" +
             "        </div>\n" +
@@ -132,7 +132,7 @@
             "    <div class=\"col-md-6\">\n" +
             "        <div class=\"form-group\">\n" +
             "            <label for=\"exampleInputEmail1\">Quantité :</label>\n" +
-            "            <input type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" required placeholder=\"Entrer quantité\">\n" +
+            "            <input type=\"number\" name=\"quantity[]\" class=\"form-control\" id=\"exampleInputEmail1\" required placeholder=\"Entrer quantité\">\n" +
             "        </div>\n" +
             "    </div>");
 
@@ -141,7 +141,7 @@
             $("#my-button").before("<div class=\"col-md-6\"> \n" +
                 "        <div class=\"form-group options-div\">\n" +
                 "            <label>Médicament :</label>\n" +
-                "            <select class=\"form-control select2bs4 options\" style=\"width: 100%;\">\n" +
+                "            <select name=\"medic[]\" class=\"form-control select2bs4 options\" style=\"width: 100%;\">\n" +
                 "                \n" +
                 "            </select>\n" +
                 "        </div>\n" +
@@ -149,7 +149,7 @@
                 "    <div class=\"col-md-6\">\n" +
                 "        <div class=\"form-group\">\n" +
                 "            <label for=\"exampleInputEmail1\">Quantité :</label>\n" +
-                "            <input type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" required placeholder=\"Entrer quantité\">\n" +
+                "            <input type=\"number[]\" name=\"quantity[]\" class=\"form-control\" id=\"exampleInputEmail1\" required placeholder=\"Entrer quantité\">\n" +
                 "        </div>\n" +
                 "    </div>")
             $.each(medications, function (index,medication) {

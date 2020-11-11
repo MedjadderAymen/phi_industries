@@ -144,7 +144,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-red elevation-4" >
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
+        <a href="{{route('/')}}" class="brand-link">
             <img src="{{asset("dist/img/PhiIndustrieLogo.png")}}" alt="AdminLTE Logo" class="brand-image"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">PhiIndustrie</span>
@@ -195,7 +195,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('invoices')}}" class="nav-link">
+                        <a href="{{route('invoice.create')}}" class="nav-link">
                             <i class="nav-icon fas fa-plus"></i>
                             <p>
                                 Ajouter Facture
