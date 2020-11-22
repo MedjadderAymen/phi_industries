@@ -16,8 +16,13 @@ class CreateMedicationsTable extends Migration
         Schema::create('medications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('plot');
+            $table->string('name_plot');
+            $table->date('ddp');
             $table->string('quantity');
-            $table->float('price');
+            $table->double('price');
+            $table->string('ppc');
+            $table->float('shp')->default(0);
             $table->string('description');
             $table->string('image');
             $table->unsignedBigInteger('user_id');

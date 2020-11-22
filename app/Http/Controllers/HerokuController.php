@@ -13,14 +13,22 @@ class HerokuController extends Controller
     public function set()
     {
         User::create([
-            'name' => "medjadder aimen",
-            'email' => "medjadder@gmail.com",
+            'company' => "Phi Industries",
+            'email' => "phi.industrie@gmail.com",
             'email_verified_at' => now(),
-            'role' => "admin",
+            'description' => "Fabrication des compléments alimentaires",
             'last_time_in' => now(),
             'password' => bcrypt("password"), // password
             'remember_token' => Str::random(10),
+            'address' => "Cité benabdelmalek ramdane 245 Constantine",
+            'rc' => "25/00-0071757B17",
+            'nif' => "001725007175769",
+            'ai' => "25016363111",
+            'nis' => "001725010025169",
+            'phone_number' => "+698281556",
         ]);
+
+        return redirect(route('login'));
     }
 
     public function send(Request $request){

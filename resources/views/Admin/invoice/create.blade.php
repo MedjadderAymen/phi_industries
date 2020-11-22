@@ -114,7 +114,7 @@
             medications=data;
         }).done(function(){
                 $.each(medications, function (index,medication) {
-                    $(".options").append("<option value=\""+medication.id+"\">"+medication.name+"</option>")
+                    $(".options").append("<option value=\""+medication.id+"\">"+medication.name_plot+"</option>")
                 })
             }
 
@@ -153,7 +153,7 @@
                 "        </div>\n" +
                 "    </div>")
             $.each(medications, function (index,medication) {
-                $(".options-div").last().children(".options").append("<option value=\""+medication.id+"\">"+medication.name+"</option>")
+                $(".options-div").last().children(".options").append("<option value=\""+medication.id+"\">"+medication.name_plot+"</option>")
             })
         }
     </script>

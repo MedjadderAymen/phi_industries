@@ -53,3 +53,12 @@ Route::get('/invoice/show/{id}', 'InvoiceController@show')->name('invoice.show')
 Route::get('/invoice/print/{id}', 'InvoiceController@InvoicePrint')->name('invoice.print');
 Route::get('/invoice/create', 'InvoiceController@create')->name('invoice.create');
 Route::post('/invoice/store', 'InvoiceController@store')->name('invoice.store');
+
+//*********************************Users*****************************************
+Route::get('/users', 'UserController@index')->name('users');
+//Route::get('/user/show/{id}', 'UserController@show')->name('user.show');
+Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
+Route::get('/user/edit/{id}', 'UserController@edit')->name('user.edit');
+Route::post('/user/update/{id}', 'UserController@update')->name('user.update');
+Route::get('/user/create', 'UserController@create')->name('user.create');
+Route::post('/user/store', 'UserController@store')->name('user.store');

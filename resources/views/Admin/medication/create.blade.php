@@ -35,11 +35,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Prix</label>
-                                        <input type="number" required name="price" class="form-control" id="exampleInputPassword1" placeholder="Prix">
+                                        <input type="number" step="0.001" required name="price" class="form-control" id="exampleInputPassword1" placeholder="Prix">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Lot</label>
+                                        <input type="number" required name="plot" class="form-control" id="exampleInputPassword1" placeholder="Lot">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Quantité</label>
                                         <input type="number" required name="quantity" class="form-control" id="exampleInputPassword1" placeholder="Quantité">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Date de production</label>
+                                        <input type="date" required name="ddp" class="form-control" id="exampleInputPassword1" placeholder="Date de production">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Image</label>

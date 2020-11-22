@@ -18,7 +18,7 @@ class InvoiceMedication extends Migration
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('medication_id');
             $table->integer('quantity');
-            $table->integer('total_price');
+            $table->float('total_price');
             $table->foreign('invoice_id')->references('id')->on('invoices');
             $table->foreign('medication_id')->references('id')->on('medications');
             $table->timestamps();

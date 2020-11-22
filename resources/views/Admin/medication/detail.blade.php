@@ -53,12 +53,20 @@
                                                         <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Prix" name="price" value="{{$medication->price}}" required>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="exampleInputPassword1">Lot</label>
+                                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Lot" name="plot" value="{{$medication->plot}}" required>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="exampleInputPassword1">Déscription</label>
                                                         <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Déscription" name="description" value="{{$medication->description}}" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Quantité</label>
                                                         <input type="number" class="form-control" id="exampleInputPassword1" placeholder="{{$medication->quantity}} boites dans le stock" name="quantity">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Date de production</label>
+                                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Date de production" name="ddp" value="{{$medication->ddp}}" required>
                                                     </div>
                                                 </div>
                                                 <!-- /.card-body -->

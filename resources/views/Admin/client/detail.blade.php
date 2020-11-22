@@ -29,9 +29,19 @@
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
                                 <address>
-                                    {{$client->address}}<br>
-                                    Phone: (+213) {{$client->phone_number}}<br>
-                                    Email: {{$client->email}}
+                                    Code: {{$client->code}}<br>
+                                    Raison social: {{$client->social_reason}}<br>
+                                    N° RC: {{$client->rc}}<br>
+                                    NIF: {{$client->nif}}<br>
+                                </address>
+                            </div>
+
+                            <div class="col-sm-4 invoice-col">
+                                <address>
+                                    AI: {{$client->ai}}<br>
+                                    NIS: {{$client->nis}}<br>
+                                    Adresse: {{$client->address}}<br>
+                                    Phone: {{$client->phone_number}}
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -46,9 +56,9 @@
                                     <tr>
                                         <th>Facture N°</th>
                                         <th>facturisé à</th>
-                                        <th>facturisé par</th>
-                                        <th>Total</th>
-                                        <th>Total aprés remise</th>
+                                        <th>Total HT</th>
+                                        <th>Total TTC</th>
+                                        <th>Net à payer</th>
                                         <th>Date</th>
                                         <th></th>
                                     </tr>
@@ -59,9 +69,9 @@
                                         <tr>
                                             <td>{{$invoice->invoice_id}}</td>
                                             <td>{{$invoice->to}}</td>
-                                            <td>{{$invoice->user->name}}</td>
-                                            <td>{{$invoice->total}}.00 Da</td>
-                                            <td>{{$invoice->price_after_discount}}.00 Da</td>
+                                            <td>{{$invoice->total_ht}} Da</td>
+                                            <td>{{$invoice->total_ttc}} Da</td>
+                                            <td>{{$invoice->total_to_pay}} Da</td>
                                             <td>{{ \Carbon\Carbon::parse($invoice->address,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}</td>
                                             <td>
                                                 <a href="{{asset(route("invoice.show",["id"=>$invoice->id]))}}" class="danger">

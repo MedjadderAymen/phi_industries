@@ -31,7 +31,6 @@
                                     <th>Facture</th>
                                     <th>Nom de societé</th>
                                     <th>facturisé à</th>
-                                    <th>facturisé par</th>
                                     <th>Total</th>
                                     <th>Date</th>
                                     <th></th>
@@ -44,8 +43,7 @@
                                         <td>{{$invoice->invoice_id}}</td>
                                         <td>{{$invoice->client->company_name}}</td>
                                         <td>{{$invoice->to}}</td>
-                                        <td>{{$invoice->user->name}}</td>
-                                        <td>{{$invoice->total}}</td>
+                                        <td>{{$invoice->total}} Da</td>
                                         <td>{{ \Carbon\Carbon::parse($invoice->address,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}</td>
                                         <td>
                                             <a href="{{asset(route("invoice.show",["id"=>$invoice->id]))}}" class="danger">

@@ -65,6 +65,9 @@ class MedicationController extends Controller
             "description" => "required|string",
             "name" => "required|string",
             "quantity" => "required|int",
+            "price" => "required",
+            "plot" => "required|string",
+            "ddp" => "required|string",
         ]);
 
         if ($data->fails()) {
@@ -82,11 +85,15 @@ class MedicationController extends Controller
             Medication::create([
                 'image' => $this->host.$url,
                 'description' => $request->description,
+                'ddp' => $request->ddp,
                 'name' => $request->name,
+                'plot' => $request->plot,
+                'name_plot' => $request->name.', Lot: '.$request->plot.', qte: '.$request->quantity,
                 'quantity' => $request->quantity,
                 'price' => $request->price,
-                'user_id' => Auth::user()->id,
-                'modified_by' => Auth::user()->id,
+                'user_id' => Auth::id(),
+                'modified_by' => Auth::id(),
+                'ppc'=>round($request->price*1.19*1.1*1.2, 4)
             ]);
 
             return redirect('medications');
@@ -137,6 +144,8 @@ class MedicationController extends Controller
             "description" => "required|string",
             "name" => "required|string",
             "price" => "required",
+            "plot" => "required|string",
+            "ddp" => "required|string",
         ]);
 
         if ($data->fails()) {
@@ -151,8 +160,12 @@ class MedicationController extends Controller
         $medication->name=$request->name;
         $medication->description=$request->name;
         $medication->price=$request->price;
+        $medication->ppc=$request->price*1.19*1.1*1.2;
         $medication->quantity+=$request->quantity;
-        $medication->modified_by=Auth::user()->id;
+        $medication->modified_by=Auth::id();
+        $medication->plot=$request->plot;
+        $medication->ddp=$request->ddp;
+        $medication->name_plot=$medication->name.', '.$medication->plot.', qte: '.$medication->quantity;
 
         $medication->save();
 

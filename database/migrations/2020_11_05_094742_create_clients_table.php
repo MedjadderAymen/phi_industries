@@ -15,10 +15,17 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements("id");
+            $table->unsignedBigInteger('user_id');
             $table->string('company_name')->unique();
             $table->string('phone_number');
-            $table->string('email');
+            $table->string('code');
+            $table->string('social_reason');
+            $table->string('rc');
+            $table->string('nif');
+            $table->string('nis');
+            $table->string('ai');
             $table->string('address');
+            $table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
         });
     }
@@ -30,6 +37,10 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
+        Schema::table("clients",function (Blueprint $table){
+            $table->dropForeign("clients_user_id_foreign");
+        });
+
         Schema::dropIfExists('clients');
     }
 }

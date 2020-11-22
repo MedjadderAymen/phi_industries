@@ -8,12 +8,19 @@ class Client extends Model
 {
     protected $fillable=[
         'company_name','phone_number',
-        'email','address'
+        'code','address','rc','ai','nif','nis','social_reason',
+        'user_id'
     ];
 
     public function Invoice(){
 
         return $this->hasMany('App\Invoice');
+
+    }
+
+    public function User(){
+
+        return $this->belongsTo('App\User');
 
     }
 }

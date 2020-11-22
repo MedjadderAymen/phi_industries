@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Validator;
 
@@ -27,7 +29,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view("Admin.client.index")->with("clients",Client::all());
+        $user=User::with(['clients.invoice'=>function($q){$q->where('user_id',Auth::id());}])->find(Auth::id());
+
+        return view("Admin.client.index")->with("clients",$user->clients);
     }
 
 
@@ -44,11 +48,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $data = Validator::make($request->all(), [
             'company_name' => "required|string",
             'phone_number' => "required",
-            'email' => "required|string|email|unique:clients",
+            'code' => "required|string|unique:clients",
             'address' => "required|string",
+            'rc' => "required|string",
+            'nis' => "required|string",
+            'ai' => "required|string",
+            'nif' => "required|string",
+            'social_reason' => "required|string",
         ]);
 
         if ($data->fails()) {
@@ -59,10 +70,16 @@ class ClientController extends Controller
         }
 
             Client::create([
+                'user_id'=>Auth::id(),
                 'company_name' => $request->company_name,
                 'phone_number' => $request->phone_number,
-                'email' => $request->email,
+                'code' => $request->code,
                 'address' => $request->address,
+                'rc' => $request->rc,
+                'ai' => $request->ai,
+                'nif' => $request->nif,
+                'nis' => $request->nis,
+                'social_reason' => $request->social_reason,
             ]);
 
             return redirect('clients');
@@ -71,7 +88,9 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        return view('Admin.client.detail')->with("client",Client::find($id)->load('invoice'));
+        $client=Client::with(['invoice'=>function($q){$q->where('user_id',Auth::id());}])->find($id);
+
+        return view('Admin.client.detail')->with("client",$client);
     }
 
     /**
@@ -96,10 +115,15 @@ class ClientController extends Controller
     {
 
         $data = Validator::make($request->all(), [
-            "company_name" => "required",
-            "address" => "required",
-            "phone_number" => "required",
-            "email" => "required",
+            'company_name' => "required|string",
+            'phone_number' => "required",
+            'code' => "required|string|unique:clients",
+            'address' => "required|string",
+            'rc' => "required|string",
+            'nis' => "required|string",
+            'ai' => "required|string",
+            'nif' => "required|string",
+            'social_reason' => "required|string",
         ]);
 
         if ($data->fails()) {
@@ -114,7 +138,12 @@ class ClientController extends Controller
         $client->company_name=$request->company_name;
         $client->phone_number=$request->phone_number;
         $client->address=$request->address;
-        $client->email=$request->email;
+        $client->code=$request->code;
+        $client->rc=$request->rc;
+        $client->nif=$request->nif;
+        $client->nis=$request->nis;
+        $client->ai=$request->ai;
+        $client->social_reason=$request->social_reason;
 
         $client->save();
 

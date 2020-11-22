@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-2">
-                    <a type="button" class="btn btn-block btn-outline-primary btn-sm" href="{{route('create')}}">
+                    <a type="button" class="btn btn-block btn-outline-primary btn-sm" href="{{route('user.create')}}">
                         Ajouter
                     </a>
                 </div>
@@ -21,44 +21,43 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Liste des médicaments</h3>
+                            <h3 class="card-title">Liste des profils</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Nom</th>
-                                    <th>Prix unitaire</th>
-                                    <th>N° Lot</th>
-                                    <th>Quantité In</th>
-                                    <th>PPC</th>
-                                    <th>DDP</th>
+                                    <th>Nom de societé</th>
+                                    <th>Email</th>
+                                    <th>Date création</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($medications as $medication)
+                                @foreach($users as $user)
 
                                     <tr>
-                                        <td>{{$medication->name}}</td>
-                                        <td>{{$medication->price}}</td>
-                                        <td>{{$medication->plot}}</td>
-                                        <td>{{$medication->quantity}}</td>
-                                        <td>{{$medication->ppc}}</td>
-                                        <td>{{$medication->ddp}}</td>
+                                        <td>{{$user->company}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($user->created_at,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}</td>
                                         <td>
-                                            <a href="{{asset(route("delete",["id"=>$medication->id]))}}">
+
+                                                @if(Auth::id() != $user->id)
+                                            <a href="{{asset(route("user.delete",["id"=>$user->id]))}}">
                                                 <i class="fas fa-trash-alt" style="color: #a71d2a"></i>
                                             </a>
+                                                @endif
 
-                                            <a href="{{asset(route("edit",["id"=>$medication->id]))}}" class="danger">
+                                            @if(Auth::id() == $user->id)
+                                            <a href="{{asset(route("user.edit",["id"=>$user->id]))}}" class="danger">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+                                                @endif
                                         </td>
                                     </tr>
 
-                                    @endforeach
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.card-body -->

@@ -73,19 +73,29 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Quantité</th>
                                     <th>Produit</th>
+                                    <th>TVA</th>
+                                    <th>Quantité</th>
                                     <th>Prix Unitaire</th>
-                                    <th>Prix total</th>
+                                    <th>Toatal HT</th>
+                                    <th>PPC</th>
+                                    <th>N° Lot</th>
+                                    <th>SHP</th>
+                                    <th>DDP</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($invoice->medications as $medication)
                                 <tr>
-                                    <td>{{$medication->pivot->quantity}}</td>
                                     <td>{{$medication->name}}</td>
-                                    <td>{{$medication->price}}.00 Da</td>
-                                    <td>{{$medication->pivot->total_price}}.00 Da</td>
+                                    <td>19%</td>
+                                    <td>{{$medication->pivot->quantity}}</td>
+                                    <td>{{$medication->price}}</td>
+                                    <td>{{$medication->pivot->total_price}}</td>
+                                    <td>{{$medication->ppc}}</td>
+                                    <td>{{$medication->plot}}</td>
+                                    <td>{{$medication->shp}}</td>
+                                    <td>{{$medication->ddp}}</td>
                                 </tr>
                                     @endforeach
                                 </tbody>
@@ -105,20 +115,28 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <tr>
-                                        <th style="width:50%">Prix hors TVA:</th>
-                                        <td>{{$invoice->total}}.00 Da</td>
+                                        <th style="width:50%">Total HT</th>
+                                        <td>{{$invoice->total_ht}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Tva (10%)</th>
-                                        <td>{{$invoice->price_after_tva}}.00 Da</td>
+                                        <th>Total PPC</th>
+                                        <td>{{$invoice->total_ppc}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Remise :</th>
+                                        <th>TVA</th>
+                                        <td>{{$invoice->tva}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total TTC</th>
+                                        <td>{{$invoice->total_ttc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Remise client:</th>
                                         <td>{{$invoice->discount}}%</td>
                                     </tr>
                                     <tr>
-                                        <th>Total:</th>
-                                        <td>{{$invoice->price_after_discount}}.00 Da</td>
+                                        <th>Net à payer:</th>
+                                        <td>{{$invoice->total_to_pay}}</td>
                                     </tr>
                                 </table>
                             </div>

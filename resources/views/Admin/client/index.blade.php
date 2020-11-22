@@ -28,9 +28,9 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th>Code societé</th>
                                     <th>Nom de societé</th>
                                     <th>Phone number</th>
-                                    <th>Email</th>
                                     <th>Adresse</th>
                                     <th>Total factures</th>
                                     <th></th>
@@ -40,11 +40,11 @@
                                 @foreach($clients as $client)
 
                                     <tr>
+                                        <td>{{$client->code}}</td>
                                         <td>{{$client->company_name}}</td>
                                         <td>{{$client->phone_number}}</td>
-                                        <td>{{$client->email}}</td>
                                         <td>{{$client->address}}</td>
-                                        <td>00</td>
+                                        <td>{{count($client->invoice)}}</td>
                                         <td>
                                             <a href="{{asset(route("client.show",["id"=>$client->id]))}}" class="danger">
                                                 <i class="fas fa-eye" style="color: #1d2124"></i>

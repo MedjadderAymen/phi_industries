@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Medication extends Model
 {
     protected $fillable=[
-        'name','image','description','quantity','user_id','modified_by','price'
+        'name','plot','name_plot','image','description','quantity','user_id',
+        'modified_by','price','ppc','shp','ddp'
     ];
+
 
     public function User(){
 

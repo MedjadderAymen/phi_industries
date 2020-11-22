@@ -29,7 +29,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('Admin.invoice.index')->with("invoices",Invoice::all());
+
+        return view('Admin.invoice.index')->with("invoices",Auth::user()->invoice);
     }
 
     /**
@@ -39,7 +40,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $clients=Client::all();
+        $clients=Auth::user()->clients;
         $medications=Medication::all();
 
         if (count($clients)==0 ){
@@ -74,34 +75,43 @@ class InvoiceController extends Controller
 
             'client_id'=>$request->client_id,
             'user_id'=>Auth::id(),
-            'invoice_id'=>uniqid(),
             'to'=>$request->to,
             'phone_number'=>$request->phone_number,
             'email'=>$request->email,
             'discount'=>$request->discount,
-            'total'=>0.0,
-            'price_after_discount'=>0.0,
-            'price_after_tva'=>0.0,
 
         ]);
 
-        $total=0.0;
+        $total_ht=0.0;
+        $total_ppc=0.0;
 
         for ($i=0; $i< count($request->medic); $i++){
 
             $medic=Medication::find($request->medic[$i]);
 
-            $invoice->Medications()->attach($request->medic[$i],['quantity' => $request->quantity[$i],'total_price'=>$request->quantity[$i]*$medic->price]);
+            $invoice->Medications()->attach($request->medic[$i],
+                            ['quantity' => $request->quantity[$i],
+                             'total_price'=>$request->quantity[$i]*$medic->price]);
 
-            $total+=$request->quantity[$i]*$medic->price;
+            $total_ht+=$request->quantity[$i]*$medic->price;
+            $total_ppc+=$request->quantity[$i]*$medic->ppc;
+
+            $medic->quantity-=$request->quantity[$i];
+            $medic->name_plot=$medic->name.', '.$medic->plot.', qte: '.$medic->quantity;
+
+            $medic->save();
 
         }
 
-        $invoice->total=$total;
+        $invoice->total_ht=$total_ht;
+        $invoice->total_ppc=$total_ppc;
+        $invoice->tva=$total_ht*0.19;
 
-        $invoice->price_after_tva=$total + ($total * (10 / 100));
+        $invoice->total_ttc=$total_ht + $invoice->tva;
 
-        $invoice->price_after_discount = $total - ($invoice->price_after_tva * ($request->discount / 100));
+        $invoice->total_to_pay = $invoice->total_ttc - (($invoice->total_ttc * $request->discount) / 100);
+
+        $invoice->invoice_id='F'.$invoice->id;
 
         $invoice->save();
 
@@ -119,7 +129,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice, $id)
     {
-        $invoice=Invoice::find($id)->with('client','user','medications')->first();
+        $invoice=Invoice::with('client','user','medications')->find($id);
 
         return view('Admin.invoice.detail')->with("invoice",$invoice);
     }
