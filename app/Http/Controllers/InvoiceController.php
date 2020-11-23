@@ -71,6 +71,20 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
 
+        for ($i=0; $i< count($request->medic); $i++){
+
+            $medic=Medication::find($request->medic[$i]);
+
+            if ($request->quantity[$i]>$medic->quantity){
+
+                Session::flash('error','Medicament '.$medic->name.' quantité insufisante');
+
+                return redirect(route('invoice.create'));
+
+            }
+
+        }
+
         try{
 
             $invoice=Invoice::create([

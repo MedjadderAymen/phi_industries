@@ -38,7 +38,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>{{count($invoices)}}<sup style="font-size: 20px">%</sup></h3>
+                            <h3>{{count($invoices)}}<sup style="font-size: 20px"></sup></h3>
 
                             <p>Facture</p>
                         </div>

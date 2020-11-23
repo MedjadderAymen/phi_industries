@@ -21,20 +21,45 @@
                         {{csrf_field()}}
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nom d'entreprise</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="company_name" value="{{$client->company_name}}" required>
+                                <label for="exampleInputEmail1">Nom entreprise</label>
+                                <input type="text" required name="company_name" value="{{$client->company_name}}" class="form-control" id="exampleInputEmail1" placeholder="Nom entreprise">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Numéro téléphone</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="phone_number" value="{{$client->phone_number}}" required>
+                                <label for="exampleInputPassword1">Code</label>
+                                <input type="text" required name="code" value="{{$client->code}}" class="form-control" id="exampleInputPassword1" placeholder="Code">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="email" value="{{$client->email}}" required>
+                                <label for="exampleInputPassword1">Numéro téléphone</label>
+                                <input type="number" required name="phone_number" value="{{$client->phone_number}}" class="form-control" id="exampleInputPassword1" placeholder="Numéro téléphone">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Adresse</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="address" value="{{$client->address}}" required>
+                                <label for="exampleFormControlFile1">Adresse</label>
+                                <input type="text" name="address" value="{{$client->address}}" class="form-control" id="exampleFormControlFile1" placeholder="Adresse" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Raison social</label>
+                                <input type="text" name="social_reason" value="{{$client->social_reason}}" class="form-control" id="exampleFormControlFile1" placeholder="Raison social" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">N° RC</label>
+                                <input type="text" name="rc" class="form-control" value="{{$client->rc}}" id="exampleFormControlFile1" placeholder="N° RC" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">NIF</label>
+                                <input type="text" name="nif" class="form-control" value="{{$client->nif}}" id="exampleFormControlFile1" placeholder="NIF" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">AI</label>
+                                <input type="text" name="ai" class="form-control" value="{{$client->ai}}" id="exampleFormControlFile1" placeholder="AI" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">NIS</label>
+                                <input type="text" name="nis" class="form-control" value="{{$client->nis}}" id="exampleFormControlFile1" placeholder="NIS" required>
                             </div>
                         </div>
                         <!-- /.card-body -->
