@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \Illuminate\Http\Request;
+use TNkemdilim\MoneyToWords\Converter;
+use TNkemdilim\MoneyToWords\Languages as Language;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/set', 'HerokuController@set');
 Route::post('/send', 'HerokuController@send')->name('sendData');
+Route::get('/convert',function (){
+
+    $converter = new Converter("Dinar", "Centime",\TNkemdilim\MoneyToWords\Languages::ENGLISH);
+
+    echo ($converter->convert("23.45"));
+
+});
 
 //*********medications****************************
 Route::get('/medications', 'MedicationController@index')->name('medications');
@@ -62,3 +71,11 @@ Route::get('/user/edit/{id}', 'UserController@edit')->name('user.edit');
 Route::post('/user/update/{id}', 'UserController@update')->name('user.update');
 Route::get('/user/create', 'UserController@create')->name('user.create');
 Route::post('/user/store', 'UserController@store')->name('user.store');
+
+//*********************************quotes*****************************************
+Route::get('/quotes', 'QuoteController@index')->name('quotes');
+Route::get('/quote/show/{id}', 'QuoteController@show')->name('quote.show');
+Route::get('/quote/print/{id}', 'QuoteController@QuotePrint')->name('quote.print');
+Route::get('/quote/create', 'QuoteController@create')->name('quote.create');
+Route::post('/quote/store', 'QuoteController@store')->name('quote.store');
+Route::post('/quote/transfer/{id}', 'QuoteController@quoteTransfer')->name('quote.transfer');

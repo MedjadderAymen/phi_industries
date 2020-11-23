@@ -71,53 +71,62 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
 
-        $invoice=Invoice::create([
+        try{
 
-            'client_id'=>$request->client_id,
-            'user_id'=>Auth::id(),
-            'to'=>$request->to,
-            'phone_number'=>$request->phone_number,
-            'email'=>$request->email,
-            'discount'=>$request->discount,
+            $invoice=Invoice::create([
 
-        ]);
+                'client_id'=>$request->client_id,
+                'user_id'=>Auth::id(),
+                'to'=>$request->to,
+                'phone_number'=>$request->phone_number,
+                'email'=>$request->email,
+                'discount'=>$request->discount,
 
-        $total_ht=0.0;
-        $total_ppc=0.0;
+            ]);
 
-        for ($i=0; $i< count($request->medic); $i++){
+            $total_ht=0.0;
+            $total_ppc=0.0;
 
-            $medic=Medication::find($request->medic[$i]);
+            for ($i=0; $i< count($request->medic); $i++){
 
-            $invoice->Medications()->attach($request->medic[$i],
-                            ['quantity' => $request->quantity[$i],
-                             'total_price'=>$request->quantity[$i]*$medic->price]);
+                $medic=Medication::find($request->medic[$i]);
 
-            $total_ht+=$request->quantity[$i]*$medic->price;
-            $total_ppc+=$request->quantity[$i]*$medic->ppc;
+                $invoice->Medications()->attach($request->medic[$i],
+                    ['quantity' => $request->quantity[$i],
+                        'total_price'=>$request->quantity[$i]*$medic->price]);
 
-            $medic->quantity-=$request->quantity[$i];
-            $medic->name_plot=$medic->name.', '.$medic->plot.', qte: '.$medic->quantity;
+                $total_ht+=$request->quantity[$i]*$medic->price;
+                $total_ppc+=$request->quantity[$i]*$medic->ppc;
 
-            $medic->save();
+                $medic->quantity-=$request->quantity[$i];
+                $medic->name_plot=$medic->name.', '.$medic->plot.', qte: '.$medic->quantity;
 
+                $medic->save();
+
+            }
+
+            $invoice->total_ht=$total_ht;
+            $invoice->total_ppc=$total_ppc;
+            $invoice->tva=$total_ht*0.19;
+
+            $invoice->total_ttc=$total_ht + $invoice->tva;
+
+            $invoice->total_to_pay = $invoice->total_ttc - (($invoice->total_ttc * $request->discount) / 100);
+
+            $invoice->invoice_id='F'.$invoice->id;
+
+            $invoice->save();
+
+            Session::flash('success','Fcture ete bien ajouté');
+
+            return redirect(route('invoice.show',["id"=>$invoice->id]));
+
+        }catch (\Exception $exception){
+
+            Session::flash('error','Erreur d\'ajout');
+            return redirect(route('/invoices'));
         }
 
-        $invoice->total_ht=$total_ht;
-        $invoice->total_ppc=$total_ppc;
-        $invoice->tva=$total_ht*0.19;
-
-        $invoice->total_ttc=$total_ht + $invoice->tva;
-
-        $invoice->total_to_pay = $invoice->total_ttc - (($invoice->total_ttc * $request->discount) / 100);
-
-        $invoice->invoice_id='F'.$invoice->id;
-
-        $invoice->save();
-
-        Session::flash('success','Fcture ete bien ajouté');
-
-        return redirect(route('invoice.show',["id"=>$invoice->id]));
 
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InvoiceMedication extends Migration
+class CreateMedicationQuote extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class InvoiceMedication extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_medication', function (Blueprint $table) {
+        Schema::create('medication_quote', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('invoice_id');
+            $table->unsignedBigInteger('quote_id');
             $table->unsignedBigInteger('medication_id');
             $table->integer('quantity');
             $table->float('total_price');
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('quote_id')->references('id')->on('quotes');
             $table->foreign('medication_id')->references('id')->on('medications');
             $table->timestamps();
         });
@@ -32,13 +32,11 @@ class InvoiceMedication extends Migration
      */
     public function down()
     {
-    
-        Schema::table("invoice_medication",function (Blueprint $table){
-            $table->dropForeign("invoice_medication_invoice_id_foreign");
-            $table->dropForeign("invoice_medication_medication_id_foreign");
+        Schema::table("medication_quote",function (Blueprint $table){
+            $table->dropForeign("medication_quote_quote_id_foreign");
+            $table->dropForeign("medication_quote_medication_id_foreign");
         });
 
-        Schema::dropIfExists('invoice_medication');
-
+        Schema::dropIfExists('quote_medication');
     }
 }

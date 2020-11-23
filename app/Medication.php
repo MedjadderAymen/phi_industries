@@ -24,4 +24,10 @@ class Medication extends Model
         
     }
 
+    public function Quotes(){
+
+        return $this->belongsToMany('App\Quote');
+
+    }
+
 }

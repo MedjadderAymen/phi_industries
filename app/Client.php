@@ -18,6 +18,12 @@ class Client extends Model
 
     }
 
+    public function Quote(){
+
+        return $this->hasMany('App\Quote');
+
+    }
+
     public function User(){
 
         return $this->belongsTo('App\User');

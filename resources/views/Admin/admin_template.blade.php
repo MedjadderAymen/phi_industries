@@ -149,7 +149,7 @@
 
                     <li class="nav-header">Devis</li>
                     <li class="nav-item">
-                        <a href="{{route('invoices')}}" class="nav-link">
+                        <a href="{{route('quotes')}}" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>
                             <p>
                                 Consulter
@@ -157,7 +157,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('invoice.create')}}" class="nav-link">
+                        <a href="{{route('quote.create')}}" class="nav-link">
                             <i class="nav-icon fas fa-plus"></i>
                             <p>
                                 Ajouter Devis

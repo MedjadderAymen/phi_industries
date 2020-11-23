@@ -27,9 +27,9 @@
                     <div class="row invoice-title">
                         <div class="col-sm-12 text-center">
                             <address>
-                                {{$invoice->user->company}} <br>
-                                {{$invoice->user->description}} <br>
-                                {{$invoice->user->address}} <br>
+                                {{$quote->user->company}} <br>
+                                {{$quote->user->description}} <br>
+                                {{$quote->user->address}} <br>
                             </address>
                         </div>
                         <!-- /.col -->
@@ -40,21 +40,21 @@
                     <div class="row invoice-info" >
                         <div class="col-sm-6 invoice-col">
                             <address>
-                                Code: {{$invoice->client->code}}<br>
-                                Raison social: {{$invoice->client->social_reason}}<br>
-                                N° RC: {{$invoice->client->rc}}<br>
-                                NIF: {{$invoice->client->nif}}<br>
-                                AI: {{$invoice->client->ai}}<br>
-                                NIS: {{$invoice->client->nis}}<br>
-                                Adresse: {{$invoice->client->address}}<br>
+                                Code: {{$quote->client->code}}<br>
+                                Raison social: {{$quote->client->social_reason}}<br>
+                                N° RC: {{$quote->client->rc}}<br>
+                                NIF: {{$quote->client->nif}}<br>
+                                AI: {{$quote->client->ai}}<br>
+                                NIS: {{$quote->client->nis}}<br>
+                                Adresse: {{$quote->client->address}}<br>
                             </address>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6 invoice-col" style="float: right">
-                            <strong>Facture</strong>
+                            <strong>Devis</strong>
                             <address>
-                                N° Facture: {{$invoice->invoice_id}}<br>
-                                Date: {{\Carbon\Carbon::parse($invoice->created_at,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}<br>
+                                N° Devis: {{$quote->quote_id}}<br>
+                                Date: {{\Carbon\Carbon::parse($quote->created_at,'GMT')->locale('fr')->isoFormat('MMM Do YYYY')}}<br>
                                 Commande: <br>
                                 Paiement: <br>
                             </address>
@@ -81,7 +81,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($invoice->medications as $medication)
+                                @foreach($quote->medications as $medication)
                                 <tr>
                                     <td>{{$medication->name}}</td>
                                     <td>19%</td>
@@ -108,27 +108,27 @@
                                 <table class="table">
                                     <tr>
                                         <th style="width:50%">Total HT</th>
-                                        <td>{{$invoice->total_ht}}</td>
+                                        <td>{{$quote->total_ht}}</td>
                                     </tr>
                                     <tr>
                                         <th>Total PPC</th>
-                                        <td>{{$invoice->total_ppc}}</td>
+                                        <td>{{$quote->total_ppc}}</td>
                                     </tr>
                                     <tr>
                                         <th>TVA</th>
-                                        <td>{{$invoice->tva}}</td>
+                                        <td>{{$quote->tva}}</td>
                                     </tr>
                                     <tr>
                                         <th>Total TTC</th>
-                                        <td>{{$invoice->total_ttc}}</td>
+                                        <td>{{$quote->total_ttc}}</td>
                                     </tr>
                                     <tr>
                                         <th>Remise client:</th>
-                                        <td>{{$invoice->discount}}%</td>
+                                        <td>{{$quote->discount}}%</td>
                                     </tr>
                                     <tr>
                                         <th>Net à payer:</th>
-                                        <td>{{$invoice->total_to_pay}}</td>
+                                        <td>{{$quote->total_to_pay}}</td>
                                     </tr>
 
 
@@ -151,9 +151,9 @@
                         <div class="row invoice-title">
                             <div class="col-sm-12 text-center">
                                 <address>
-                                    **RC {{$invoice->user->rc}} ** NIF
-                                    {{$invoice->user->nif}} ** AI
-                                    {{$invoice->user->ai}} ** NIS {{$invoice->user->nis}} <br>
+                                    **RC {{$quote->user->rc}} ** NIF
+                                    {{$quote->user->nif}} ** AI
+                                    {{$quote->user->ai}} ** NIS {{$quote->user->nis}} <br>
                                     NB: aucune réclamation ne sera acceptée après le délai de 7 jours de la date de livraison<br>
                                 </address>
                             </div>
@@ -164,7 +164,12 @@
                     <!-- this row will not appear when printing -->
                     <div class="row no-print">
                         <div class="col-12">
-                            <a href="{{route("invoice.print",["id"=>$invoice->id])}}" target="_blank" class="btn btn-success"><i class="fas fa-print"></i> Print</a>
+                            <a href="{{route("quote.print",["id"=>$quote->id])}}" target="_blank" class="btn btn-success"><i class="fas fa-print"></i> Print</a>
+                            <a href="{{route("quote.transfer",["id"=>$quote->id])}}" target="_blank" class="btn btn-info" onclick="event.preventDefault();
+                                                     document.getElementById('transfer-form').submit();"><i class="fas fa-file-invoice"></i> Facturiser</a>
+                            <form id="transfer-form" action="{{route("quote.transfer",["id"=>$quote->id])}}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
