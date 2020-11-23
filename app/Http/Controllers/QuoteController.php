@@ -112,7 +112,7 @@ class QuoteController extends Controller
 
             $quote->save();
 
-            Session::flash('success', 'Fcture ete bien ajouté');
+            Session::flash('success', 'Devis ete bien ajouté');
 
             return redirect(route('quote.show', ["id" => $quote->id]));
 
@@ -226,14 +226,16 @@ class QuoteController extends Controller
 
             $invoice->save();
 
+            $quote->delete();
+
             Session::flash('success','Fcture ete bien ajouté');
 
             return redirect(route('invoice.show',["id"=>$invoice->id]));
 
         }catch (\Exception $exception){
 
-            Session::flash('error','Erreur d\'ajout');
-            return redirect(route('/invoices'));
+            Session::flash('error','Erreur');
+            return redirect(route('invoices'));
         }
 
 

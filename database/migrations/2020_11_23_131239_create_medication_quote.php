@@ -19,7 +19,7 @@ class CreateMedicationQuote extends Migration
             $table->unsignedBigInteger('medication_id');
             $table->integer('quantity');
             $table->float('total_price');
-            $table->foreign('quote_id')->references('id')->on('quotes');
+            $table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade');
             $table->foreign('medication_id')->references('id')->on('medications');
             $table->timestamps();
         });
